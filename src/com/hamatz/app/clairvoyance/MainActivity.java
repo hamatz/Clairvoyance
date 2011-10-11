@@ -34,21 +34,21 @@ public class MainActivity<clairvoyance> extends Activity {
     private String target = "";
     private String[] blackList = null;
     private int iteration = 0;
-	
-	@Override
+    
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         mPackageManager = getApplicationContext().getPackageManager();
-		List<ApplicationInfo> applicationInfoList = mPackageManager.getInstalledApplications(PackageManager.GET_META_DATA);
-		ApplicationInfo applicationInfo;
+        List<ApplicationInfo> applicationInfoList = mPackageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+        ApplicationInfo applicationInfo;
 
         blackList = getResources().getStringArray(R.array.blacklist);
         iteration = blackList.length;
 
-	    final TextView textView = (TextView) findViewById(R.id.text);
-		
-		Button button = (Button) findViewById(R.id.Button01);
+        final TextView textView = (TextView) findViewById(R.id.text);
+        
+        Button button = (Button) findViewById(R.id.Button01);
         
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +63,7 @@ public class MainActivity<clairvoyance> extends Activity {
             }
         });
         
-		Button button2 = (Button) findViewById(R.id.Button02);
+        Button button2 = (Button) findViewById(R.id.Button02);
         
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +76,7 @@ public class MainActivity<clairvoyance> extends Activity {
             }
         });
 
-		Button button3 = (Button) findViewById(R.id.Button03);
+        Button button3 = (Button) findViewById(R.id.Button03);
         
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,46 +87,46 @@ public class MainActivity<clairvoyance> extends Activity {
             }
         });
         
-		int size = applicationInfoList.size();
-		int c=0;
-		int c2=0;
-		String rs="";
+        int size = applicationInfoList.size();
+        int c=0;
+        int c2=0;
+        String rs="";
 
-		for (int j = 0; j < iteration; j++){
-			target = blackList[j];
-			rs+="Žw’èÜ‹àŽñ–¼F" + target +"\n";
-			for (int i = 0; i < size; i++) {
-				applicationInfo = applicationInfoList.get(i);
-				String packageName = applicationInfo.packageName;
-					try{
-						mPackageManager.getActivityInfo(new ComponentName(packageName, target), 0);
-						rs+="ƒAƒvƒŠ–¼F["+mPackageManager.getApplicationLabel(applicationInfo).toString()+"]\n" + packageName +"\n‚©‚çÜ‹àŽñ‚ðŒŸo‚µ‚Ü‚µ‚½I\n\n";
-						c++;
-						c2++;
-					}catch( Exception ce){
-					}
-				}
-			if ( 0==c2){
-				rs+="ŠY“–‚·‚éƒAƒvƒŠ‚Í‚ ‚è‚Ü‚¹‚ñ‚Å‚µ‚½\n\n";
-			}
-			c2 = 0;
-		}
-			rs=rs+"\n"+"Ü‹àŽñ‚ð‡Œv‚Å"+c+"ŒŒŸo‚µ‚Ü‚µ‚½\n";
+        for (int j = 0; j < iteration; j++){
+            target = blackList[j];
+            rs+="æŒ‡å®šè³žé‡‘é¦–åï¼š" + target +"\n";
+            for (int i = 0; i < size; i++) {
+                applicationInfo = applicationInfoList.get(i);
+                String packageName = applicationInfo.packageName;
+                    try{
+                        mPackageManager.getActivityInfo(new ComponentName(packageName, target), 0);
+                        rs+="ã‚¢ãƒ—ãƒªåï¼š["+mPackageManager.getApplicationLabel(applicationInfo).toString()+"]\n" + packageName +"\nã‹ã‚‰è³žé‡‘é¦–ã‚’æ¤œå‡ºã—ã¾ã—ãŸï¼\n\n";
+                        c++;
+                        c2++;
+                    }catch( Exception ce){
+                    }
+                }
+            if ( 0==c2){
+                rs+="è©²å½“ã™ã‚‹ã‚¢ãƒ—ãƒªã¯ã‚ã‚Šã¾ã›ã‚“ã§ã—ãŸ\n\n";
+            }
+            c2 = 0;
+        }
+            rs=rs+"\n"+"è³žé‡‘é¦–ã‚’åˆè¨ˆã§"+c+"ä»¶æ¤œå‡ºã—ã¾ã—ãŸ\n";
 
-			if ( 0==c){
-				rs+="‚¨‚ß‚Å‚Æ‚¤IÜ‹àŽñ‚ÍŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½I\n";
-			}
-		    textView.setText(rs);
-		}
+            if ( 0==c){
+                rs+="ãŠã‚ã§ã¨ã†ï¼è³žé‡‘é¦–ã¯è¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸï¼\n";
+            }
+            textView.setText(rs);
+        }
 
-	/**
-	 * ƒAƒvƒŠ‚ð‹­§I—¹‚³‚¹AÄ‹N“®‚·‚é
-	 * @param null
-	 */
-	public void restartApp(){
-		finish();
-		Intent rstit = new Intent(MainActivity.this, MainActivity.class);
-		startActivity(rstit);
-	}
+    /**
+     * ã‚¢ãƒ—ãƒªã‚’å¼·åˆ¶çµ‚äº†ã•ã›ã€å†èµ·å‹•ã™ã‚‹
+     * @param null
+     */
+    public void restartApp(){
+        finish();
+        Intent rstit = new Intent(MainActivity.this, MainActivity.class);
+        startActivity(rstit);
+    }
 
 }
