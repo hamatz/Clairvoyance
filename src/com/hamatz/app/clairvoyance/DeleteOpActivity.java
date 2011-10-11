@@ -48,23 +48,23 @@ public class DeleteOpActivity extends Activity{
         blackList = getResources().getStringArray(R.array.blacklist);
         iteration = blackList.length;
  
-       	checkList(0);
+        checkList(0);
 
     }
     
     private void checkList(int i){
         
         mIndex = 0;
-		target = blackList[i];
-		
-		if (!searchWanted()) {
-			if (i < iteration -1){
-				i++;
-				checkList(i);
-			}else {
-				alertFinish();
-			}
-		}
+        target = blackList[i];
+        
+        if (!searchWanted()) {
+            if (i < iteration -1){
+                i++;
+                checkList(i);
+            }else {
+                alertFinish();
+            }
+        }
     }
 
     private boolean searchWanted() {
@@ -105,15 +105,15 @@ public class DeleteOpActivity extends Activity{
     
     private void deleteApplicationDialog( String title, final String packageName ) {
         new AlertDialog.Builder(this)
-        .setTitle( "Ü‹àŽñ‚ð•ß‚Ü‚¦‚Ü‚µ‚½I" )
-        .setMessage( String.format("ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ %s ‚ðAíœ‚µ‚Ü‚·‚©H", title) )
-        .setPositiveButton( "íœ" , new DialogInterface.OnClickListener(){
+        .setTitle( "è³žé‡‘é¦–ã‚’æ•ã¾ãˆã¾ã—ãŸï¼" )
+        .setMessage( String.format("ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ %s ã‚’ã€å‰Šé™¤ã—ã¾ã™ã‹ï¼Ÿ", title) )
+        .setPositiveButton( "å‰Šé™¤" , new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 deleteApplication( packageName );
             }
         })
-        .setNegativeButton( "Œ©“¦‚·" , new DialogInterface.OnClickListener(){
+        .setNegativeButton( "è¦‹é€ƒã™" , new DialogInterface.OnClickListener(){
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 if ( !searchWanted() ) {
@@ -125,15 +125,15 @@ public class DeleteOpActivity extends Activity{
     }
     
     void alertFinish(){
-        String msg = mCount == 0 ? "íœ‚·‚éÜ‹àŽñ‚Í‚¢‚È‚¢‚æ‚¤‚Å‚·I"
-                : String.format("‡Œv%dŒ‚ÌÜ‹àŽñ‚ð‘ÞŽ¡‚µ‚Ü‚µ‚½", mCount);
-    	new AlertDialog.Builder(this)
+        String msg = mCount == 0 ? "å‰Šé™¤ã™ã‚‹è³žé‡‘é¦–ã¯ã„ãªã„ã‚ˆã†ã§ã™ï¼"
+                : String.format("åˆè¨ˆ%dä»¶ã®è³žé‡‘é¦–ã‚’é€€æ²»ã—ã¾ã—ãŸ", mCount);
+        new AlertDialog.Builder(this)
         .setTitle(R.string.app_name)
         .setMessage( msg )
         .setPositiveButton( "OK" , new DialogInterface.OnClickListener(){
-        	public void onClick(DialogInterface dialog, int which) {
-        		finish();
-        	}
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
         })
         .show();
     }
