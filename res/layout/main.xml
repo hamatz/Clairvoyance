@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+<ScrollView android:id="@+id/ScrollView01" 
+			android:layout_width="fill_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1">
+<TextView
+		android:id="@+id/text"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content" />
+</ScrollView>
+<Button android:layout_height="wrap_content" android:text="この結果を通報（共有）する" android:id="@+id/Button01" android:layout_width="fill_parent"></Button>	
+<Button android:text="賞金首共を削除する" android:id="@+id/Button02" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+<Button android:text="賞金首を再検出する" android:id="@+id/Button03" android:layout_width="fill_parent" android:layout_height="wrap_content"></Button>
+</LinearLayout>
