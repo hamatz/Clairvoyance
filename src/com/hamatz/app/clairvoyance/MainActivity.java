@@ -40,7 +40,7 @@ public class MainActivity<clairvoyance> extends Activity {
         final String[] blackList = getResources().getStringArray(R.array.blacklist);
         final TextView textView = (TextView) findViewById(R.id.text);
         
-        findViewById(R.id.Button01).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 
@@ -52,7 +52,7 @@ public class MainActivity<clairvoyance> extends Activity {
             }
         });
         
-        findViewById(R.id.Button02).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_uninstall).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 
@@ -62,7 +62,7 @@ public class MainActivity<clairvoyance> extends Activity {
             }
         });
 
-        findViewById(R.id.Button03).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 restartApp();
