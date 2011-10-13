@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">通報君Z</string>
     <string name="title">賞金首検索結果</string>
+    
+    <string name="share_result">この結果を通報（共有）する</string>
+    <string name="delete_wanted_app">賞金首共を削除する</string>
+    <string name="retry_search">賞金首を再検出する</string>
+    
 </resources>
