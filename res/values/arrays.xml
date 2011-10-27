@@ -3,5 +3,6 @@
     <array name="blacklist">
         <item>com.applogsdk.ui.WebDialog</item>
         <item>jp.co.milog.apptv.sdk.view.StoreActivity</item>
+        <item>mobi.mgeek.TunnyBrowser.BrowserActivity</item>
     </array>
 </resources>

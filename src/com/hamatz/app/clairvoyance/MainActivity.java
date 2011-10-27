@@ -17,11 +17,15 @@ package com.hamatz.app.clairvoyance;
 
 import java.util.List;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -96,6 +100,29 @@ public class MainActivity<clairvoyance> extends Activity {
             sb.append("おめでとう！賞金首は見つかりませんでした！\n");
         }
         textView.setText(sb);
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+    	menu.add(0, 0, 0, "Help").setIcon(android.R.drawable.ic_menu_help);
+		return super.onCreateOptionsMenu(menu);
+    }
+    
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case 0:
+        	new AlertDialog.Builder(this)
+            .setTitle( "このアプリについて" )
+            .setMessage( "Application Name：　通報君Z\n" + "Version:　1.05\n\n" + "Contributors:\n@hamatz, @zaki50, @fukuyuki,  眼ありやま鏡")
+            .setPositiveButton( "OK" , new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            })
+            .show();
+            return true;
+        }
+        return false;
     }
 
     /**
