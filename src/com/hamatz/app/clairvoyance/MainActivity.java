@@ -23,17 +23,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-//import android.widget.Toast;
 
 public class MainActivity<clairvoyance> extends Activity {
     /** Called when the activity is first created. */
 
-    private PackageManager mPackageManager = null;
-    private String target = "";
-    private String[] blackList = null;
-    private int iteration = 0;
+    private PackageManager mPackageManager;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,20 +36,14 @@ public class MainActivity<clairvoyance> extends Activity {
         setContentView(R.layout.main);
         mPackageManager = getApplicationContext().getPackageManager();
         List<ApplicationInfo> applicationInfoList = mPackageManager.getInstalledApplications(PackageManager.GET_META_DATA);
-        ApplicationInfo applicationInfo;
 
-        blackList = getResources().getStringArray(R.array.blacklist);
-        iteration = blackList.length;
-
+        final String[] blackList = getResources().getStringArray(R.array.blacklist);
         final TextView textView = (TextView) findViewById(R.id.text);
         
-        Button button = (Button) findViewById(R.id.Button01);
-        
-        button.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_share).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 
-                Button button = (Button) v;
                 Intent it = new Intent();
                 it.setAction(Intent.ACTION_SEND);
                 it.setType("text/plain");
@@ -63,61 +52,51 @@ public class MainActivity<clairvoyance> extends Activity {
             }
         });
         
-        Button button2 = (Button) findViewById(R.id.Button02);
-        
-        button2.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_uninstall).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 
-                Button button2 = (Button) v;
                 Intent intent = new Intent(MainActivity.this, DeleteOpActivity.class);
                 
                 startActivity(intent);
             }
         });
 
-        Button button3 = (Button) findViewById(R.id.Button03);
-        
-        button3.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
-                Button button3 = (Button) v;
                 restartApp();
             }
         });
         
-        int size = applicationInfoList.size();
-        int c=0;
-        int c2=0;
-        String rs="";
+        int total = 0;
+        final StringBuilder sb = new StringBuilder();
 
-        for (int j = 0; j < iteration; j++){
-            target = blackList[j];
-            rs+="指定賞金首名：" + target +"\n";
-            for (int i = 0; i < size; i++) {
-                applicationInfo = applicationInfoList.get(i);
+        for (String target : blackList){
+            int subTotal = 0;
+            sb.append("指定賞金首名：").append(target).append("\n");
+            for (ApplicationInfo applicationInfo : applicationInfoList) {
                 String packageName = applicationInfo.packageName;
-                    try{
-                        mPackageManager.getActivityInfo(new ComponentName(packageName, target), 0);
-                        rs+="アプリ名：["+mPackageManager.getApplicationLabel(applicationInfo).toString()+"]\n" + packageName +"\nから賞金首を検出しました！\n\n";
-                        c++;
-                        c2++;
-                    }catch( Exception ce){
-                    }
+                try{
+                    mPackageManager.getActivityInfo(new ComponentName(packageName, target), 0);
+                    sb.append("アプリ名：[").append(mPackageManager.getApplicationLabel(applicationInfo).toString()).append("]\n");
+                    sb.append(packageName).append("\nから賞金首を検出しました！\n\n");
+                    total++;
+                    subTotal++;
+                }catch( Exception ce){
                 }
-            if ( 0==c2){
-                rs+="該当するアプリはありませんでした\n\n";
             }
-            c2 = 0;
+            if ( 0==subTotal){
+                sb.append("該当するアプリはありませんでした\n\n");
+            }
         }
-            rs=rs+"\n"+"賞金首を合計で"+c+"件検出しました\n";
+        sb.append("\n"+"賞金首を合計で").append(total).append("件検出しました\n");
 
-            if ( 0==c){
-                rs+="おめでとう！賞金首は見つかりませんでした！\n";
-            }
-            textView.setText(rs);
+        if ( 0==total){
+            sb.append("おめでとう！賞金首は見つかりませんでした！\n");
         }
+        textView.setText(sb);
+    }
 
     /**
      * アプリを強制終了させ、再起動する
@@ -125,7 +104,7 @@ public class MainActivity<clairvoyance> extends Activity {
      */
     public void restartApp(){
         finish();
-        Intent rstit = new Intent(MainActivity.this, MainActivity.class);
+        Intent rstit = new Intent(this, MainActivity.class);
         startActivity(rstit);
     }
 
